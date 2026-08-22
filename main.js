@@ -6,6 +6,7 @@ const sceneHeight = scenes.offsetHeight;
 const sceneWidth = scenes.offsetWidth;
 const starSize = 2;
 const radius = sceneHeight / 2;
+let theme = null ?? 'light';
 
 function getValidPosition() {
   let left;
@@ -61,6 +62,7 @@ checkboxInp.addEventListener('change', () => {
       )
     `;
     button.style.boxShadow = '0 0 1rem rgba(0, 0, 0, 0.3)';
+    theme = 'light';
   } else {
     document.body.style.backgroundImage = `
       linear-gradient(
@@ -70,5 +72,38 @@ checkboxInp.addEventListener('change', () => {
       )
     `;
     button.style.boxShadow = '0 0 1rem rgba(255, 255, 255, 0.8)';
+    theme = 'dark';
   }
+  localStorage.setItem('theme', theme);
 });
+
+let savedTheme = localStorage.getItem('theme');
+
+function removeBodyClass(cls) {
+  requestAnimationFrame(() => {
+    document.body.classList.remove(cls);
+  });
+}
+
+if (savedTheme === 'light') {
+  document.body.classList.add('preload');
+  document.body.style.backgroundImage = `
+      linear-gradient(
+        180deg,
+        #87ceeb,
+        #ffffff
+      )
+    `;
+  checkboxInp.checked = true;
+  removeBodyClass('preload');
+} else if (savedTheme === 'dark') {
+  document.body.classList.add('preload');
+  checkboxInp.checked = false;
+  document.body.style.backgroundImage = `
+      linear-gradient(
+        180deg,
+        #050014,
+        #140c86
+      )`;
+  removeBodyClass('preload');
+}
