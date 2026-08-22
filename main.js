@@ -61,8 +61,12 @@ checkboxInp.addEventListener('change', () => {
         #ffffff
       )
     `;
-    button.style.boxShadow = '0 0 1rem rgba(0, 0, 0, 0.3)';
     theme = 'light';
+    if (button.classList.contains('dark')) {
+      button.classList.replace('dark', 'light');
+    } else {
+      button.classList.add('light');
+    }
   } else {
     document.body.style.backgroundImage = `
       linear-gradient(
@@ -71,8 +75,12 @@ checkboxInp.addEventListener('change', () => {
         #140c86
       )
     `;
-    button.style.boxShadow = '0 0 1rem rgba(255, 255, 255, 0.8)';
     theme = 'dark';
+    if (button.classList.contains('light')) {
+      button.classList.replace('light', 'dark');
+    } else {
+      button.classList.add('dark');
+    }
   }
   localStorage.setItem('theme', theme);
 });
@@ -86,7 +94,6 @@ function removeBodyClass(cls) {
 }
 
 if (savedTheme === 'light') {
-  document.body.classList.add('preload');
   document.body.style.backgroundImage = `
       linear-gradient(
         180deg,
@@ -95,9 +102,13 @@ if (savedTheme === 'light') {
       )
     `;
   checkboxInp.checked = true;
+  if (button.classList.contains('darl')) {
+    button.classList.replace('dark', 'light');
+  } else {
+    button.classList.add('light');
+  }
   removeBodyClass('preload');
 } else if (savedTheme === 'dark') {
-  document.body.classList.add('preload');
   checkboxInp.checked = false;
   document.body.style.backgroundImage = `
       linear-gradient(
@@ -105,5 +116,10 @@ if (savedTheme === 'light') {
         #050014,
         #140c86
       )`;
+  if (button.classList.contains('light')) {
+    button.classList.replace('light', 'dark');
+  } else {
+    button.classList.add('dark');
+  }
   removeBodyClass('preload');
 }
