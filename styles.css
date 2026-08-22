@@ -1,0 +1,451 @@
+/* ──────────── reset styles ──────────── */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* ──────────── body styles ──────────── */
+body {
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+  background-image: linear-gradient(180deg, #87ceeb, #ffffff);
+}
+
+/* ──────────── input#toggle styles ────────────\ */
+#toggle {
+  display: none;
+}
+
+/* ──────────── button styles ──────────── */
+.button {
+  width: 18rem;
+  height: 8rem;
+  background-color: #cdcedd;
+  border-radius: 100px;
+  cursor: pointer;
+  padding: 0.5rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+}
+
+/* ──────────── night scene styles ──────────── */
+.button .scenes {
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem;
+  background-color: #140c86;
+  border-radius: 100px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  transition: all 0.5s;
+}
+
+.button .scenes .circle {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  display: flex;
+  transition: all 0.5s;
+  z-index: 999;
+  position: relative;
+  box-shadow:
+    0 0 0.5rem rgba(0, 1, 60, 0.2),
+    0 0 0 2rem #f5f3e86b,
+    0 0 0 4rem #f5f3e848,
+    0 0 0 6rem #f5f3e828;
+}
+
+.button .scenes .circle-content {
+  width: 6rem;
+  height: 6rem;
+  min-width: 6rem;
+  min-height: 6rem;
+  border-radius: 50%;
+  display: flex;
+  overflow: hidden;
+}
+
+.button .scenes .star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background-color: white;
+  border-radius: 50%;
+  transition: all 0.5s;
+  z-index: 0;
+}
+
+.button .scenes .moon-toggle {
+  min-width: 6rem;
+  min-height: 6rem;
+  position: relative;
+  z-index: 999;
+  background-color: #e8e6d9;
+  border-radius: inherit;
+  box-shadow:
+    0 0 0.5rem rgba(0, 1, 60, 0.5),
+    inset 3px 3px 0.5rem rgba(0, 1, 60, 0.2);
+  transition: all 0.5s;
+}
+
+.button .scenes .moon-toggle .hole1 {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 1rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background-color: #a9a79e;
+  box-shadow: inset 2px 2px 0.5rem rgba(0, 0, 0, 0.2);
+  transition: opacity 0.2s;
+}
+
+.button .scenes .moon-toggle .hole2 {
+  position: absolute;
+  top: 1.8rem;
+  left: 0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background-color: #a9a79e;
+  box-shadow: inset 2px 2px 0.5rem rgba(0, 0, 0, 0.2);
+  transition: opacity 0.2s;
+}
+
+.button .scenes .moon-toggle .hole3 {
+  position: absolute;
+  top: 0.8rem;
+  right: 1.8rem;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background-color: #a9a79e;
+  box-shadow: inset 2px 2px 0.5rem rgba(0, 0, 0, 0.2);
+  transition: opacity 0.2s;
+}
+
+.button .scenes .trees {
+  position: absolute;
+  bottom: 0;
+  right: 4rem;
+  transition: all 0.5s;
+}
+
+.button .scenes .tree1 {
+  border-right: 0 solid transparent;
+  border-left: 0.8rem solid transparent;
+  border-bottom: 3rem solid green;
+  position: relative;
+  bottom: -3rem;
+  z-index: 999;
+  transition: all 1s;
+}
+.button .scenes .tree1::after {
+  content: '';
+  border-right: 0.8rem solid transparent;
+  border-left: 0 solid transparent;
+  border-bottom: 3rem solid darkgreen;
+  position: absolute;
+  right: -0.79rem;
+  transition: all 1s;
+}
+
+.button .scenes .tree2 {
+  border-right: 0 solid transparent;
+  border-left: 0.8rem solid transparent;
+  border-bottom: 3rem solid green;
+  position: relative;
+  right: 1.3rem;
+  z-index: 999;
+  transition: all 1s;
+}
+.button .scenes .tree2::after {
+  content: '';
+  border-right: 0.8rem solid transparent;
+  border-left: 0 solid transparent;
+  border-bottom: 3rem solid darkgreen;
+  position: absolute;
+  right: -0.8rem;
+  transition: all 1s;
+}
+
+.astronaut {
+  height: 2.2rem;
+  position: absolute;
+  top: calc(100% + 2.2rem);
+  transform: translateX(4rem);
+  z-index: 999;
+  animation: up-right 10s linear forwards;
+}
+
+@keyframes up-right {
+  100% {
+    top: -2.2rem;
+    transform: translateX(9rem) rotate(110deg);
+  }
+}
+
+/* ──────────── day scene styles ──────────── */
+.button .scenes .sun-toggle {
+  min-width: 6rem;
+  min-height: 6rem;
+  background-color: #ffd76a;
+  position: relative;
+  border-radius: 50%;
+  z-index: 1001;
+  box-shadow:
+    inset -2px 2px 0.5rem rgba(245, 245, 245, 0.7),
+    inset 2px -2px 0.5rem rgba(0, 0, 0, 0.2);
+  transition: all 0.5s;
+}
+
+.button .scenes .clouds {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 5.5rem;
+  display: flex;
+  scale: 0.5;
+  opacity: 0;
+  z-index: 1;
+}
+
+.button .scenes .clouds .cloud1 {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.button .scenes .clouds .cloud2 {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: white;
+  position: absolute;
+  right: 1.8rem;
+  top: 0.6rem;
+}
+
+.button .scenes .clouds .cloud3 {
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  background-color: white;
+  position: absolute;
+  right: 3.2rem;
+  top: 1.4rem;
+}
+
+.button .scenes .stem {
+  position: absolute;
+  width: 1.5px;
+  height: 0;
+  background-color: green;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.button .scenes .leaf1 {
+  position: absolute;
+  width: 0;
+  height: 1.5px;
+  background-color: green;
+  bottom: 0.35rem;
+  left: 50%;
+  border-radius: 50%;
+}
+
+.button .scenes .leaf2 {
+  position: absolute;
+  width: 0;
+  height: 1.5px;
+  background-color: green;
+  bottom: 0.12rem;
+  left: calc(50% + 1px);
+  border-radius: 50%;
+  rotate: 180deg;
+  transform-origin: left center;
+}
+
+.button .scenes .vasat {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background-color: yellow;
+  position: absolute;
+  bottom: 0.7rem;
+  right: 50%;
+  transform: translateX(50%) scale(0);
+  transform-origin: center bottom;
+  z-index: 1;
+}
+
+.button .scenes .petal1 {
+  width: 4px;
+  height: 4px;
+  background-color: red;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 1.05rem;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  z-index: 0;
+  transform-origin: center center;
+}
+
+.button .scenes .petal2 {
+  width: 4px;
+  height: 4px;
+  background-color: red;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0.9rem;
+  left: 51.3%;
+  transform: translateX(-50%) scale(0);
+  z-index: 0;
+  transform-origin: center center;
+}
+
+.button .scenes .petal3 {
+  width: 4px;
+  height: 4px;
+  background-color: red;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0.65rem;
+  left: 51.3%;
+  transform: translateX(-50%) scale(0);
+  z-index: 0;
+  transform-origin: center center;
+}
+
+.button .scenes .petal4 {
+  width: 4px;
+  height: 4px;
+  background-color: red;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0.55rem;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  z-index: 0;
+  transform-origin: center center;
+}
+
+.button .scenes .petal5 {
+  width: 4px;
+  height: 4px;
+  background-color: red;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0.669rem;
+  left: 48.68%;
+  transform: translateX(-50%) scale(0);
+  z-index: 0;
+  transform-origin: center center;
+}
+
+.button .scenes .petal6 {
+  width: 4px;
+  height: 4px;
+  background-color: red;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0.904em;
+  left: 48.69%;
+  transform: translateX(-50%) scale(0);
+  z-index: 0;
+}
+
+/* ──────────── 🤫 checkbox hack 🤫 ──────────── */
+#toggle:checked + .button .scenes {
+  background-color: skyblue;
+}
+
+#toggle:checked + .button .circle {
+  transform: translateX(10rem);
+}
+
+#toggle:checked + .button .sun-toggle {
+  transform: translateX(-100%);
+}
+
+#toggle:checked + .button .flower .stem {
+  transition: height 0.5s 1.2s;
+  height: 0.7rem;
+}
+
+#toggle:checked + .button .flower .leaf1 {
+  transition: width 0.2s 1.4s;
+  width: 3px;
+}
+
+#toggle:checked + .button .flower .leaf2 {
+  transition: width 0.2s 1.3s;
+  width: 4px;
+}
+
+#toggle:checked + .button .flower .vasat {
+  transition: transform 0.3s 1.5s;
+  transform: translateX(50%) scale(1);
+}
+
+#toggle:checked + .button .flower .petal1,
+#toggle:checked + .button .flower .petal2,
+#toggle:checked + .button .flower .petal3,
+#toggle:checked + .button .flower .petal4,
+#toggle:checked + .button .flower .petal5,
+#toggle:checked + .button .flower .petal6 {
+  transition: transform 0.5s 1.7s;
+  transform: translateX(-50%) scale(1);
+}
+
+#toggle:checked + .button .scenes .clouds {
+  transition: all 0.8s 1s;
+  opacity: 1;
+  scale: 1;
+}
+
+#toggle:checked + .button .scenes .star {
+  animation: display-none 0.5s ease forwards;
+}
+@keyframes display-none {
+  0% {
+    opacity: 1;
+  }
+  99% {
+    opacity: 0;
+  }
+  100% {
+    display: none;
+  }
+}
+
+#toggle:checked + .button .scenes .trees {
+  right: 12rem;
+}
+
+#toggle:checked + .button .scenes .tree1 {
+  border-bottom: 3rem solid darkgreen;
+}
+#toggle:checked + .button .scenes .tree1::after {
+  border-bottom: 3rem solid green;
+}
+
+#toggle:checked + .button .scenes .tree2 {
+  border-bottom: 3rem solid darkgreen;
+}
+#toggle:checked + .button .scenes .tree2::after {
+  border-bottom: 3rem solid green;
+}
+
+#toggle:checked + .button .scenes .astronaut {
+  display: none;
+}
